@@ -11,3 +11,16 @@ if len(sys.argv)!=2:
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+
+Information= (sys.argv[1])
+a=Information.split(':')
+IP_address=str(a[0])
+port=int(a[1])
+
+server.bind((IP_address,port))
+
+server.listen(100)
+
+print('Waiting for client connections')
+
