@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 
 import socket
@@ -21,3 +20,37 @@ a=Information.split(':')
 IP_address=str(a[0])
 port=int(a[1])
 nick=str(sys.argv[2])
+
+
+server.connect((IP_address, port))
+
+first_message=server.recv(2048).decode('utf-8')
+
+print(first_message)
+
+nick = 'NICK ' + nick
+
+
+server.sendall(nick.encode('utf-8'))
+
+ok_msg=server.recv(2048).decode('utf-8')
+print(ok_msg)
+if ok_msg == "OK":
+    pass
+elif ok_msg == "ERR malformed nick name":
+    print('dont enter nick name with special characters,limit upto 12 characters')
+    print('disconnecting, try with valid nickname')
+    sys.exit()
+    
+    
+
+
+
+
+
+
+
+
+
+
+
