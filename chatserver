@@ -95,3 +95,12 @@ def clientthread(conn,addr):
         except KeyboardInterrupt:
             conn.close()
             break
+
+def broadcasting(message,connection,nick1):
+    for sockets in clients:
+        if sockets!= server:
+            try:
+                sockets.sendall(message.encode('utf-8'))
+            except KeyboardInterrupt:
+                    clients.remove(sockets)
+                    break 
