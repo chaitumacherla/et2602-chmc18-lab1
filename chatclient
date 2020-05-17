@@ -37,9 +37,9 @@ ok_msg=server.recv(2048).decode('utf-8')
 print(ok_msg)
 if ok_msg == "OK":
     pass
-elif ok_msg == "ERR malformed nick name":
-    print('dont enter nick name with special characters,limit upto 12 characters')
-    print('disconnecting, try with valid nickname')
+elif ok_msg == "ERROR invalid nick name":
+    print('do not enter nick name with special characters,limit upto 12 characters')
+    print('disconnecting,, try again with valid nickname')
     sys.exit()
     
     
@@ -52,8 +52,8 @@ while True:
     
     for sockets in read_sockets:
         if sockets == server:
-            message = sockets.recv(2048).decode('utf-8')
-            print(message)
+            msgs  = sockets.recv(2048).decode('utf-8')
+            print(msgs)
         else:
             message=sys.stdin.readline()
             
